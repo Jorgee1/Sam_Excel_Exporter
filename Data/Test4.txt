@@ -1,0 +1,127 @@
+#
+#Script Name:PRUEBA_PUERTOS	Script Version:1	Target:BAQ_VST_7210_02
+#Status:Successful	Date:2017/03/14 09:22:29 789
+#Saved Result File Name:script-PRUEBA_PUERTOS.target-BAQ_VST_7210_02.2017-03-14_09-22-29_789.txt.gz
+#Parameters:
+#
+show service service-using | match "Matching"
+Matching Services : 103
+show service sap-using | match "Number"
+Number of SAPs : 150
+show port description | match 10/100/G
+1/1/1          10/100/Gig Ethernet SFP
+1/1/2          10/100/Gig Ethernet SFP
+1/1/3          10/100/Gig Ethernet SFP
+1/1/4          10/100/Gig Ethernet SFP
+1/1/5          10/100/Gig Ethernet SFP
+1/1/6          10/100/Gig Ethernet SFP
+1/1/7          10/100/Gig Ethernet SFP
+1/1/8          10/100/Gig Ethernet SFP
+1/1/11         10/100/Gig Ethernet SFP
+1/1/13         10/100/Gig Ethernet SFP
+1/1/17         10/100/Gig Ethernet SFP
+1/1/20         10/100/Gig Ethernet SFP
+
+#
+#Script Name:PRUEBA_PUERTOS	Script Version:1	Target:BAQ_VST_7210_03
+#Status:Successful	Date:2017/03/14 09:22:29 609
+#Saved Result File Name:script-PRUEBA_PUERTOS.target-BAQ_VST_7210_03.2017-03-14_09-22-29_609.txt.gz
+#Parameters:
+#
+show service service-using | match "Matching"
+Matching Services : 10
+show service sap-using | match "Number"
+Number of SAPs : 80
+show port description | match 10/100/G
+1/1/1          10/100/Gig Ethernet SFP
+1/1/2          10/100/Gig Ethernet SFP
+1/1/3          10/100/Gig Ethernet SFP
+1/1/4          10/100/Gig Ethernet SFP
+1/1/7          10/100/Gig Ethernet SFP
+1/1/9          10/100/Gig Ethernet SFP
+1/1/11         10/100/Gig Ethernet SFP
+1/1/12         10/100/Gig Ethernet SFP
+1/1/15         10/100/Gig Ethernet SFP
+1/1/18         10/100/Gig Ethernet SFP
+1/1/20         10/100/Gig Ethernet SFP
+1/1/22         10/100/Gig Ethernet SFP
+
+#
+#Script Name:PRUEBA_PUERTOS	Script Version:1	Target:BAQ_VST_7210_04
+#Status:Successful	Date:2017/03/14 09:22:29 609
+#Saved Result File Name:script-PRUEBA_PUERTOS.target-BAQ_VST_7210_04.2017-03-14_09-22-29_609.txt.gz
+#Parameters:
+#
+show service service-using | match "Matching"
+Matching Services : 11
+show service sap-using | match "Number"
+Number of SAPs : 73
+show port description | match 10/100/G
+1/1/1          10/100/Gig Ethernet SFP
+1/1/2          10/100/Gig Ethernet SFP
+1/1/6          10/100/Gig Ethernet SFP
+1/1/7          10/100/Gig Ethernet SFP
+1/1/9          10/100/Gig Ethernet SFP
+1/1/13         10/100/Gig Ethernet SFP
+1/1/14         10/100/Gig Ethernet SFP
+1/1/16         10/100/Gig Ethernet SFP
+1/1/17         10/100/Gig Ethernet SFP
+1/1/18         10/100/Gig Ethernet SFP
+1/1/19         10/100/Gig Ethernet SFP
+1/1/20         10/100/Gig Ethernet SFP
+1/1/22         10/100/Gig Ethernet SFP
+1/1/23         10/100/Gig Ethernet SFP
+1/1/24         10/100/Gig Ethernet SFP
+
+#
+#Script Name:PRUEBA_PUERTOS	Script Version:1	Target:BAQ_VST_7210_05
+#Status:Successful	Date:2017/03/14 09:22:29 609
+#Saved Result File Name:script-PRUEBA_PUERTOS.target-BAQ_VST_7210_05.2017-03-14_09-22-29_609.txt.gz
+#Parameters:
+#
+show service service-using | match "Matching"
+Matching Services : 49
+show service sap-using | match "Number"
+Number of SAPs : 136
+show port description | match 10/100/G
+1/1/5          10/100/Gig Ethernet SFP
+1/1/10         10/100/Gig Ethernet SFP
+1/1/12         10/100/Gig Ethernet SFP
+1/1/14         10/100/Gig Ethernet SFP
+1/1/19         10/100/Gig Ethernet SFP
+1/1/20         10/100/Gig Ethernet SFP
+1/1/22         10/100/Gig Ethernet SFP
+
+#
+#Script Name:PRUEBA_PUERTOS	Script Version:1	Target:BAQ_VST_7210_06
+#Status:Successful	Date:2017/03/14 09:22:29 609
+#Saved Result File Name:script-PRUEBA_PUERTOS.target-BAQ_VST_7210_06.2017-03-14_09-22-29_609.txt.gz
+#Parameters:
+#
+show service service-using | match "Matching"
+Matching Services : 154
+show service sap-using | match "Number"
+Number of SAPs : 174
+show port description | match 10/100/G
+1/1/16         10/100/Gig Ethernet SFP
+1/1/23         10/100/Gig Ethernet SFP
+1/1/24         10/100/Gig Ethernet SFP
+
+#
+#Script Name:PRUEBA_PUERTOS	Script Version:1	Target:BQA_VST_7210_01
+#Status:Successful	Date:2017/03/14 09:22:29 609
+#Saved Result File Name:script-PRUEBA_PUERTOS.target-BQA_VST_7210_01.2017-03-14_09-22-29_609.txt.gz
+#Parameters:
+#
+show service service-using | match "Matching"
+Matching Services : 16
+show service sap-using | match "Number"
+Number of SAPs : 15
+show port description | match 10/100/G
+1/1/4          10/100/Gig Ethernet SFP
+1/1/14         10/100/Gig Ethernet SFP
+1/1/15         10/100/Gig Ethernet SFP
+1/1/16         10/100/Gig Ethernet SFP
+1/1/18         10/100/Gig Ethernet SFP
+1/1/24         10/100/Gig Ethernet SFP
+
