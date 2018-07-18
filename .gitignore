@@ -3,3 +3,7 @@
 /.idea
 /src/META-INF
 vPython/*
+data/*
+build/*
+dist/*
+__pycache__/*
