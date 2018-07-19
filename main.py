@@ -4,6 +4,7 @@ import ntpath
 from PyQt5.QtWidgets import QMainWindow, QApplication, QInputDialog, QLineEdit, QFileDialog
 from PyQt5.QtCore import (QCoreApplication, Qt, QEvent)
 from mainUI import Ui_MainWindow
+from data_extractor import *
 
 """
 C&W Networks
@@ -18,8 +19,6 @@ class AppWindow(QMainWindow):
         super().__init__()
         self.listIndex = -1
 
-
-
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.ui.open_fileB.triggered.connect(self.openFileNameDialog)
@@ -27,7 +26,8 @@ class AppWindow(QMainWindow):
         self.ui.listWidget.itemSelectionChanged.connect(self.test)
 
     def test(self):
-        print(self.ui.listWidget.selectedItem().text())
+        self.listIndex = self.ui.listWidget.currentRow()
+        print(self.ui.listWidget.currentRow())
 
     def keyPressEvent(self, event):
         key = event.key()
@@ -36,14 +36,19 @@ class AppWindow(QMainWindow):
             QCoreApplication.quit()
         elif key == Qt.Key_Delete:
             print(self.ui.listWidget.currentRow())
-            if self.ui.listWidget.currentRow()>=0:
+            if self.listIndex>=0:
                 item = self.ui.listWidget.takeItem(self.ui.listWidget.currentRow())
                 item = None
+                for i in range(self.ui.listWidget.count()):
+                    self.ui.listWidget.item(i).setSelected(False)
+                self.listIndex = -1
+                self.ui.pushButton.setFocus()
 
     def mousePressEvent(self, event):
         #print("X:",event.x(),", Y:",event.y())
         for i in range(self.ui.listWidget.count()):
             self.ui.listWidget.item(i).setSelected(False)
+        self.listIndex = -1
         self.ui.pushButton.setFocus()
 
     def openFileNameDialog(self):
