@@ -62,7 +62,7 @@ class AppWindow(QMainWindow):
 
     def extract_data(self):
         final_data = [["Name", "Service", "Saps", "Ports"]]
-        with open('csvtext.csv', 'w') as f:
+        with open('csvtext.csv', 'w', newline='') as f:
             for i in range(self.ui.listWidget.count()):
                 #print(self.ui.listWidget.item(i).text())
                 data = extract(self.ui.listWidget.item(i).text())
