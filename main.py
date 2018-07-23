@@ -56,12 +56,23 @@ class AppWindow(QMainWindow):
         options |= QFileDialog.DontUseNativeDialog
         fileNames, _ = QFileDialog.getOpenFileNames(self,"Abrir TXT", "","TXT (*.txt)", options=options)
         if fileNames:
-            self.ui.listWidget.addItems([ntpath.basename(i) for i in fileNames])
+            #self.ui.listWidget.addItems([ntpath.basename(i) for i in fileNames])
+            self.ui.listWidget.addItems(fileNames)
         self.ui.pushButton.setFocus()
 
     def extract_data(self):
-        for i in range(self.ui.listWidget.count()):
-            print(self.ui.listWidget.item(i).text())
+        nullRow = ["","","",""]
+        final_data = [["Name", "Service", "Saps", "Ports"]]
+        with open('csvtext.csv', 'w') as f:
+            for i in range(self.ui.listWidget.count()):
+                #print(self.ui.listWidget.item(i).text())
+                data = extract(self.ui.listWidget.item(i).text())
+                final_data = final_data + data + nullRow
+
+            writer = csv.writer(f)
+            writer.writerows(final_data)
+
+        self.ui.listWidget.clear()
 
 
 app = QApplication(sys.argv)

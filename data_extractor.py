@@ -28,96 +28,65 @@ show port description | match 10/100/G -> loop
 
 """
 
-
-def testx():
-    print("Module Test")
-
-if __name__ == "__main__":
-    PTH = "data/"
-
+def extract(file_path):
     patterns = {
         'Name': 'Target:[A-Za-z\t_0-9 .]+',
         'Services': 'show service service-using | match "Matching"',
         'Saps': 'show service sap-using | match "Number"',
         'Ports': 'show port description | match 10/100/G',
     }
-
-    format = {
-        'Name':'',
-        'Services':'0',
-        'Saps':'0',
-        'Ports':'0',
-    }
-
-    with open('data/131.txt', 'r') as file:
+    #print(file_path)
+    with open(file_path, 'r') as file:
         data = file.read().splitlines()
         size = len(data)
+
+        out = []
+        temp = []
         for index in range(size):
             #print(str(index)+":", data[index])
-
             if re.search(patterns['Name'], data[index]):
                 name = re.search(patterns['Name'], data[index]).group().replace('Target:', '')
-                print("Name:",name)
+                #print("Name:",name)
+                temp.append(name)
             elif re.search(patterns['Services'], data[index]):
                 if re.search(r'Matching Services : [0-9]+', data[index+1]):
-                    print('Services:', re.search(r'[0-9]+', data[index+1]).group())
+                    num = re.search(r'[0-9]+', data[index+1]).group()
+                    #print('Services:', num)
                     index = index + 1
+                    temp.append(num)
+                else:
+                    temp.append(0)
             elif re.search(patterns['Saps'], data[index]):
-                print(data[index+1])
+                #print(data[index+1])
                 if re.search(r'Number of SAPs : [0-9]+', data[index+1]):
-                    print('Saps:', re.search(r'[0-9]+', data[index+1]).group())
+                    num = re.search(r'[0-9]+', data[index+1]).group()
+                    #print('Saps:', num)
                     index = index + 1
+                    temp.append(num)
+                else:
+                    #print('Saps: 0')
+                    temp.append(0)
+            elif re.search(patterns['Ports'], data[index]):
+                sw = True
+                acc = 0
+                j=1
+                while sw:
+                    if index+j < size and len(data[index+j])>4:
+                        #print(data[index+j])
+                        acc = acc + 1
+                    else:
+                        sw = False
+                    j = j+1
+                #print("Ports:", acc)
+                temp.append(acc)
+                out.append(temp)
+                #print(temp)
+                temp = []
+                #print("---------------------------")
+        #print(out)
+        return out
 
-        """
-        for line in data:
-            if re.search(patterns['Name'], line):
-                name = re.search(patterns['Name'], line).group().replace('Target:', '')
-                print(name)
-            elif re.search(patterns['Services'], line):
-                print(data.readline())
-            elif re.search(patterns['Saps'], line):
-                print(data.readline())
-            elif re.search(patterns['Ports'], line)
-                print(data.readline())
 
-        """
-        """
-            for key, pattern in patterns.items():
+if __name__ == "__main__":
 
-                if key == 'Name':
-                    if re.search(pattern, i):
-                        print('Name:', re.search(pattern, i).group().replace('Target:', ''))
-                        cosa['Name'] = re.search(pattern, i).group().replace('Target:', '')
-                elif key == 'Saps':
-                    if re.search(pattern, i):
-                        print('Saps', re.search(r'[0-9]+', i).group())
-                        cosa['Saps'] = re.search(r'[0-9]+', i).group()
-                elif key == 'Services':
-                    if re.search(pattern, i):
-                        print('Services:', re.search(r'[0-9]+', i).group())
-                        cosa['Services'] = re.search(r'[0-9]+', i).group()
-                elif key == 'Ports':
-                    if re.search(pattern, i):
-                        count = 0
-                        while f:
-                            temp = f.readline()
-                            if len(temp)>4:
-                                count = count +1
-                            else:
-                                break;
-                        print("Ports:", count)
-                        cosa['Ports'] = count
-                        #print("------------------------------")
-                        flag = True
-
-                if flag:
-                    data.append(cosa)
-                    flag = False
-                    print(cosa)
-                    cosa = {
-                        'Name':'',
-                        'Services':'0',
-                        'Saps':'0',
-                        'Ports':'0',
-                    }
-            """
+    extract('data/131.txt')
