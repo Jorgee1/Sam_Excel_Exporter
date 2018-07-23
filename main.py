@@ -61,14 +61,13 @@ class AppWindow(QMainWindow):
         self.ui.pushButton.setFocus()
 
     def extract_data(self):
-        nullRow = ["","","",""]
         final_data = [["Name", "Service", "Saps", "Ports"]]
         with open('csvtext.csv', 'w') as f:
             for i in range(self.ui.listWidget.count()):
                 #print(self.ui.listWidget.item(i).text())
                 data = extract(self.ui.listWidget.item(i).text())
-                final_data = final_data + data + nullRow
-
+                final_data = final_data + data + [["","","",""]]
+            print(final_data)
             writer = csv.writer(f)
             writer.writerows(final_data)
 
