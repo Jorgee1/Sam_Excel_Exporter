@@ -1,7 +1,8 @@
 import sys
 import csv
 import ntpath
-from PyQt5.QtWidgets import QMainWindow, QApplication, QInputDialog, QLineEdit, QFileDialog
+import os.path
+from PyQt5.QtWidgets import QMainWindow, QApplication, QInputDialog, QLineEdit, QFileDialog, QListWidgetItem
 from PyQt5.QtCore import (QCoreApplication, Qt, QEvent)
 from mainUI import Ui_MainWindow
 from data_extractor import *
@@ -13,6 +14,13 @@ Jorge Ortega
 """
 
 #pyuic5 mainWindow.ui -o mainUI.py
+
+
+class Qfile(QListWidgetItem):
+    def __init__(self, path, parent=None):
+        self.path = path
+        self.filename = os.path.basename(self.path)
+        super().__init__(self.filename)
 
 class AppWindow(QMainWindow):
     def __init__(self):
@@ -56,18 +64,32 @@ class AppWindow(QMainWindow):
         options |= QFileDialog.DontUseNativeDialog
         fileNames, _ = QFileDialog.getOpenFileNames(self,"Abrir TXT", "","TXT (*.txt)", options=options)
         if fileNames:
-            #self.ui.listWidget.addItems([ntpath.basename(i) for i in fileNames])
-            self.ui.listWidget.addItems(fileNames)
+            for i in fileNames:
+                self.ui.listWidget.addItem(Qfile(i))
         self.ui.pushButton.setFocus()
 
     def extract_data(self):
+        outFile = 'csvtext'
         final_data = [["Name", "Service", "Saps", "Ports"]]
-        with open('csvtext.csv', 'w', newline='') as f:
+
+        if os.path.isfile(outFile +'.csv'):
+            index = 0
+            print("Problem")
+            while True:
+                if os.path.isfile(outFile + '_' + str(index) + '.csv'):
+                    index = index + 1
+                else:
+                    outFile = outFile + '_' + str(index)
+                    break;
+                print( outFile + '_' + str(index) + '.csv')
+
+
+        with open(outFile +'.csv', 'w', newline='') as f:
             for i in range(self.ui.listWidget.count()):
                 #print(self.ui.listWidget.item(i).text())
-                data = extract(self.ui.listWidget.item(i).text())
+                data = extract(self.ui.listWidget.item(i).path)
                 final_data = final_data + data + [["","","",""]]
-            print(final_data)
+
             writer = csv.writer(f)
             writer.writerows(final_data)
 
