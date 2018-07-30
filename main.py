@@ -69,7 +69,7 @@ class AppWindow(QMainWindow):
         self.ui.pushButton.setFocus()
 
     def extract_data(self):
-        outFile = 'csvtext'
+        outFile = 'Resultado_SAPs'
         final_data = [["Name", "Service", "Saps", "Ports"]]
 
         if os.path.isfile(outFile +'.csv'):
