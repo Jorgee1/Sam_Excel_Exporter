@@ -2,3 +2,14 @@
 /out
 /.idea
 /src/META-INF
+vPython/*
+
+data/*
+out/*
+
+build/*
+dist/*
+__pycache__/*
+*.spec
+
+csvtext.csv
